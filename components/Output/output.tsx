@@ -14,7 +14,7 @@ import { Label } from "@/components/ui/label"
 
 const Output = () => {
 
-  const [customInput, setCustomInput] = useState("");
+  const [customInput, setCustomInput] = useState("[2,7,11,15]\n9\n[3,2,4]\n6\n[3,3]\n6");
   const [processing, setProcessing] = useState(false);
   const [output, setOutput] = useState("");
   
@@ -30,18 +30,18 @@ const Output = () => {
 
   return (
     <div className='  w-full h-full text-white font-bold text-center flex-col items-center justify-between '>
-      <Tabs defaultValue="TESTCASES" className="w-full">
-      <TabsList className="grid w-full grid-cols-2">
-        <TabsTrigger value="TESTCASES">TESTCASES</TabsTrigger>
-        <TabsTrigger value="OUTPUT">OUTPUT</TabsTrigger>
-      </TabsList>
-      <TabsContent value="TESTCASES">
-      <Testcase customInput={customInput} setCustomInput={setCustomInput} />
-      </TabsContent>
+      <Tabs defaultValue="TESTCASES" className="w-full  ">
+        <TabsList className="grid w-full grid-cols-2 ">
+          <TabsTrigger className='' value="TESTCASES">TESTCASES</TabsTrigger>
+          <TabsTrigger className='' value="OUTPUT">OUTPUT</TabsTrigger>
+        </TabsList>
+        <TabsContent value="TESTCASES">
+          <Testcase customInput={customInput} setCustomInput={setCustomInput} />
+        </TabsContent>
       <TabsContent value="OUTPUT">
       <div className="w-full text-white text-left ">
                 <Label className=" mx-2 text-xl font-bold " htmlFor="message">Output</Label>
-                <Textarea rows={8} className=" my-2 " readOnly
+                <Textarea rows={8} className=" my-2 w-full h-full overflow-auto dark:bg-[#010712]  " readOnly
                     placeholder={output} id="testcase" />
             </div>
       </TabsContent>

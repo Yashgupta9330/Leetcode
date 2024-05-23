@@ -1,5 +1,5 @@
 
-export type Language = "javascript" | "c" | "python" | "java" | "cpp";
+// export type Language = "javascript" | "c" | "python" | "java" | "cpp";
 export const languages= ["javascript", "c", "python", "java", "cpp"];
 
 export const CODE_SNIPPETS= {
@@ -9,4 +9,4 @@ export const CODE_SNIPPETS= {
     "java": `\npublic class HelloWorld {\n\tpublic static void main(String[] args) {\n\t\tSystem.out.println("Hello World");\n\t}\n}\n`,
     "cpp":`#include <iostream>\n#include <string>\n\nvoid greet(const std::string& name) {\n\tstd::cout << "Hello, " << name << "!" << std::endl;\n}\n\nint main() {\n\tgreet("Alex");\n\treturn 0;\n}\n`,
   };
- 
+  export type Language = keyof typeof CODE_SNIPPETS;
