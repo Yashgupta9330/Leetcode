@@ -17,9 +17,10 @@ const CodeEditor = () => {
       setValue(value);
     }
   };
-  const onSelectChange = (sl:string) => {
+  const onSelectChange = (sl:Language) => {
     console.log("selected Option...", sl);
     setLanguage(sl);
+    setValue(CODE_SNIPPETS[sl])
   };
 
   return (
@@ -38,7 +39,7 @@ const CodeEditor = () => {
             className=' h-[100%] resize-y rounded-lg max-h-[90vh] '
             theme="vs-dark"
             language={language}
-            defaultValue={"javascript"}
+            defaultValue={value}
             onMount={onMount}
             value={value}
             onChange={handleChange}

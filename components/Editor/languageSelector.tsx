@@ -1,6 +1,6 @@
 "use client"
-import { useState } from "react"
-import { languages, CODE_SNIPPETS } from "./constants"
+import { useState, MouseEvent, ChangeEvent } from "react"
+import { languages, CODE_SNIPPETS, Language } from "./constants"
 import {
     Select,
     SelectContent,
@@ -12,7 +12,7 @@ import {
   } from "@/components/ui/select"
 
 
-type onSelectFunctionType = ((newValue: string) => void)
+type onSelectFunctionType = ((newValue: Language) => void)
 
 interface LanguageSelectorProps {
     onSelectChange: onSelectFunctionType;
@@ -23,17 +23,22 @@ interface LanguageSelectorProps {
     // Other props...
   }
 const LanguageSelector: React.FC<LanguageSelectorProps> = ({onSelectChange}) => {
-    const [language, setLanguage] = useState("javascript");
+    const [language, setLanguage] = useState<Language>("javascript");
+    const handleChange=(event: ChangeEvent<HTMLSelectElement>)=>{
+      const val = event.target.value;
+      setLanguage(val as Language);
+      console.log(val, "--> selector component");
+      onSelectChange(language)
 
-    const onSelectClick =(lang:string)=>{
-        setLanguage(lang);
-        console.log(lang);
-        console.log(language);
-        
     }
+    // const onSelectClick =(e:MouseEvent<HTMLOptionElement, MouseEvent>)=>{
+    //     // setLanguage(e);
+    //     console.log(e.toString);
+    //     // console.log(language);
+    // }
 
     return (<>
-        <Select onValueChange={() => onSelectChange(language)} >
+        {/* <Select onValueChange={() => onSelectChange(language)} >
         <SelectTrigger className="w-[180px]">
           <SelectValue placeholder="Default Language" />
         </SelectTrigger>
@@ -47,7 +52,16 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({onSelectChange}) => 
             
           </SelectGroup>
         </SelectContent>
-      </Select>
+      </Select> */}
+{/* () => onSelectChange(language) */}
+
+      <select value={language} onChange={handleChange} className="appearance-none bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-600 hover:border-gray-500 dark:hover:border-gray-400 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline dark:text-white" >
+      {
+                languages.map((lang)=>(
+                   <option key={lang} value={lang}>{lang}</option>
+                ))
+            }
+      </select>
     
     </>
     )
