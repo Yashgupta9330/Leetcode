@@ -39,7 +39,6 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({onSelectChange}) => 
         </SelectTrigger>
         <SelectContent onChange={() => onSelectChange(language)} >
           <SelectGroup>
-            <SelectLabel>Code Language</SelectLabel>
             {
                 languages.map((lang)=>(
                     <SelectItem onClick={() => onSelectClick(lang)} key={lang} value={lang}>{lang}</SelectItem>
